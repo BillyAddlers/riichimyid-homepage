@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 import { mtConfig } from "@material-tailwind/react";
+import { colors } from "./tailwind.colors";
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   content: [
@@ -10,12 +12,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+      colors,
     },
   },
-  plugins: [mtConfig],
+  plugins: [mtConfig, typography],
+  darkMode: "class",
 };
 export default config;
