@@ -1,31 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { IconButton, Typography, Navbar } from "@material-tailwind/react";
-import {
-  Book,
-  Github,
-  Menu,
-  MultiplePages,
-  SelectFace3d,
-  Xmark,
-} from "iconoir-react";
+import { Menu, Xmark } from "iconoir-react";
 import { ThemeSwitchComponent } from "@/components/switch";
-
-const LINKS = [
-  { icon: MultiplePages, title: "Project", href: "#" },
-  { icon: SelectFace3d, title: "Uses", href: "#" },
-  { icon: Book, title: "Post", href: "" },
-  {
-    icon: Github,
-    title: "Source",
-    href: "https://github.com/BillyAddlers/riichimyid-homepage",
-  },
-];
+import { NavbarRoutes } from "@/constants/navbarlist";
 
 const NavList: FC = () => {
   return (
     <ul className="mt-4 flex flex-col gap-x-3 gap-y-1.5 lg:mt-0 lg:flex-row lg:items-center">
-      {LINKS.map(({ icon: Icon, title, href }) => (
+      {NavbarRoutes.map(({ icon: Icon, title, href }) => (
         <li key={title}>
           <Typography
             as="a"
@@ -71,7 +54,7 @@ export const NavbarComponent: FC = () => {
       variants={navbarVariants}
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
-      <Navbar className="sticky top-0 mt-5 z-50 mx-auto w-full max-w-screen-xl bg-surface-light dark:bg-surface-dark">
+      <Navbar className="sticky top-0 mt-5 z-50 mx-auto w-full max-w-screen-xl bg-surface">
         <div className="flex items-center text-black dark:text-white">
           <Typography
             as="a"

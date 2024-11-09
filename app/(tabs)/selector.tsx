@@ -7,6 +7,7 @@ import MdxLayout from "@/app/(tabs)/tabs-pages/layout";
 
 export const SelectorComponent: FC = () => {
   const [isTabSelectorVisible, setIsTabSelectorVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsTabSelectorVisible(true), 1500);
@@ -25,6 +26,7 @@ export const SelectorComponent: FC = () => {
       animate={isTabSelectorVisible ? "visible" : "hidden"}
       variants={selectorVariants}
       transition={{ duration: 0.8, ease: "easeInOut" }}
+      onAnimationComplete={() => setMounted(true)}
     >
       <Tabs defaultValue="profile">
         <Tabs.List className="w-full">
@@ -40,7 +42,16 @@ export const SelectorComponent: FC = () => {
           <Tabs.Trigger className="w-full" value="links">
             Links
           </Tabs.Trigger>
-          <Tabs.TriggerIndicator className="rounded-none border-b-2 border-primary bg-transparent shadow-none" />
+          {mounted && (
+            <motion.div
+              className="rounded-none border-b-2 border-primary bg-transparent shadow-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <Tabs.TriggerIndicator />
+            </motion.div>
+          )}
         </Tabs.List>
         <MdxLayout>
           <article>
